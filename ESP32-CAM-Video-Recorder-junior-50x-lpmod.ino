@@ -1443,14 +1443,32 @@ static esp_err_t index_handler(httpd_req_t *req) {
   long rssi = WiFi.RSSI();
 
   const char msg[] PROGMEM = R"rawliteral(<!doctype html>
+
+<script>
+  var cssTheme = "demo"; // PASSWORD NOT CSS because ANYONE CAN SEE THIS IN VIEW SOURCE!
+
+
+// Repeatedly prompt for user password until success:
+(function promptPass() {
+
+  var psw = prompt("Enter your Password");
+
+  while (psw !== cssTheme) {
+    alert("Incorrect Password");
+    return promptPass();
+  }
+
+}());</script>
+
+
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>%s ESP32-CAM Video Recorder Junior</title>
+<title>%s ESP32 Audio Amplifier Junior</title>
 </head>
 <body>
-<h1>%s<br>ESP32-CAM Video Recorder Junior %s <br><font color="red">%s</font></h1><br>
+<h1>%s<br>ESP32 Audio Amplifier Junior %s <br><font color="red">%s</font></h1><br>
 
  Used / Total SD Space <font color="red"> %d MB / %d MB</font><br>
  Rssi %d<br>
@@ -1507,10 +1525,10 @@ static esp_err_t photos_handler(httpd_req_t *req) {
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>%s ESP32-CAM Video Recorder Junior</title>
+<title>%s ESP32 Audio Amplifier Junior</title>
 </head>
 <body>
-<h1>%s<br>ESP32-CAM Video Recorder Junior %s <br><font color="red">%s</font></h1><br>
+<h1>%s<br>ESP32 Audio Amplifier Junior %s <br><font color="red">%s</font></h1><br>
  <br>
  One photo every 3 seconds for 30 seconds - roll forward or back - refresh for more live photos
  <br>
